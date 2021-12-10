@@ -1,5 +1,5 @@
+const divOl = document.querySelector('#lista-tarefas');
 function criarTarefa() {
-  const divOl = document.querySelector('#lista-tarefas');
   const lista = document.createElement('li');
   lista.classList.add('item');
 
@@ -20,17 +20,23 @@ function mudaBg(event) {
 }
 
 function lineThr(event) {
-    const completed = document.querySelector('.completed');
-    completed.classList.remove('completed');
-    event.target.classList.add('completed');
-  }
+  event.target.classList.add('completed');
+}
 
-document.querySelector('#lista-tarefas').addEventListener('click', mudaBg);
-document.querySelector('#lista-tarefas').addEventListener('dblclick', lineThr);
+divOl.addEventListener('click', mudaBg);
+divOl.addEventListener('dblclick', lineThr);
 
 const apagaButton = document.querySelector('#apaga-tudo');
 
-apagaButton.addEventListener('click', function() {
-    document.querySelector('#lista-tarefas').innerHTML = ''
-})
+apagaButton.addEventListener('click', () => {
+  divOl.innerHTML = '';
+});
 
+const finaliza = document.querySelector('#remover-finalizados');
+
+finaliza.addEventListener('click', () => {
+  const finalizados = document.getElementsByClassName('completed');
+  while (finalizados.length > 0) {
+    finalizados[0].parentNode.removeChild(finalizados[0]);
+  }
+});
