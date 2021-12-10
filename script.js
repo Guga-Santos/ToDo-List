@@ -14,10 +14,23 @@ const button = document.querySelector('#criar-tarefa');
 button.addEventListener('click', criarTarefa);
 
 function mudaBg(event) {
-  event.target.classList.add('alvo');
   const alvo = document.querySelector('.alvo');
   alvo.classList.remove('alvo');
   event.target.classList.add('alvo');
 }
 
+function lineThr(event) {
+    const completed = document.querySelector('.completed');
+    completed.classList.remove('completed');
+    event.target.classList.add('completed');
+  }
+
 document.querySelector('#lista-tarefas').addEventListener('click', mudaBg);
+document.querySelector('#lista-tarefas').addEventListener('dblclick', lineThr);
+
+const apagaButton = document.querySelector('#apaga-tudo');
+
+apagaButton.addEventListener('click', function() {
+    document.querySelector('#lista-tarefas').innerHTML = ''
+})
+
