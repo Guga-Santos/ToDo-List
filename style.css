@@ -1,0 +1,13 @@
+.item {
+  height: 20px;
+  width: fit-content;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: white;
+  padding: 5px 10px;
+  margin: 5px;
+}
+
+.alvo {
+  background-color: gray;
+}
