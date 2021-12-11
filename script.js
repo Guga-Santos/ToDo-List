@@ -101,4 +101,5 @@ selectRemove.addEventListener('click', () => {
       removed[0].parentNode.removeChild(removed[0]);
     }
   }
+  document.querySelector('ol').classList.add('alvo');
 });
