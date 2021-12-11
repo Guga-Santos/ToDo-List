@@ -8,6 +8,10 @@
   margin: 5px;
 }
 
+.item:hover {
+    cursor: pointer;
+}
+
 .alvo {
   background-color: gray;
 }

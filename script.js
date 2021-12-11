@@ -87,3 +87,18 @@ function goDown() {
 
 praCima.addEventListener('click', goUP);
 praBaixo.addEventListener('click', goDown);
+
+const selectRemove = document.querySelector('#remover-selecionado');
+
+selectRemove.addEventListener('click', () => {
+  const local = document.querySelector('ol').children;
+  for (let i = 0; i < local.length; i += 1) {
+    if (local[i].classList.length > 1) {
+      local[i].classList.add('only');
+    }
+    const removed = document.getElementsByClassName('only');
+    while (removed.length > 0) {
+      removed[0].parentNode.removeChild(removed[0]);
+    }
+  }
+});
