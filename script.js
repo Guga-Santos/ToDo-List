@@ -50,10 +50,10 @@ apagaButton.addEventListener('click', () => {
 const finaliza = document.querySelector('#remover-finalizados');
 
 finaliza.addEventListener('click', () => {
-    const finalizados = document.getElementsByClassName('completed');
-    while (finalizados.length > 0) {
+  const finalizados = document.getElementsByClassName('completed');
+  while (finalizados.length > 0) {
     finalizados[0].parentNode.removeChild(finalizados[0]);
-}
+  }
   document.querySelector('ol').classList.add('alvo');
 });
 
@@ -66,8 +66,8 @@ const praCima = document.querySelector('#mover-cima');
 const praBaixo = document.querySelector('#mover-baixo');
 
 function goUP() {
-    const selection = document.querySelector('.alvo');
-    const localTroca = document.querySelector('.alvo').previousElementSibling;
+  const selection = document.querySelector('.alvo');
+  const localTroca = document.querySelector('.alvo').previousElementSibling;
   const reserva = selection.innerHTML;
   selection.innerHTML = localTroca.innerHTML;
   localTroca.innerHTML = reserva;
@@ -76,9 +76,9 @@ function goUP() {
 }
 
 function goDown() {
-    const selection = document.querySelector('.alvo');
-    const localTroca = document.querySelector('.alvo').nextElementSibling;
-    const reserva = selection.innerHTML;
+  const selection = document.querySelector('.alvo');
+  const localTroca = document.querySelector('.alvo').nextElementSibling;
+  const reserva = selection.innerHTML;
   selection.innerHTML = localTroca.innerHTML;
   localTroca.innerHTML = reserva;
   selection.classList.remove('alvo');
@@ -91,45 +91,32 @@ praBaixo.addEventListener('click', goDown);
 const selectRemove = document.querySelector('#remover-selecionado');
 
 selectRemove.addEventListener('click', () => {
-    const local = document.querySelector('ol').children;
+  const local = document.querySelector('ol').children;
   for (let i = 0; i < local.length; i += 1) {
-      if (local[i].classList.length > 1) {
+    if (local[i].classList.length > 1) {
       local[i].classList.add('only');
     }
     const removed = document.getElementsByClassName('only');
     while (removed.length > 0) {
-        removed[0].parentNode.removeChild(removed[0]);
+      removed[0].parentNode.removeChild(removed[0]);
     }
-}
+  }
   document.querySelector('ol').classList.add('alvo');
 });
 
-
 function guardarConteudo() {
-    const htmlContent = document.querySelector('body').innerHTML
-    localStorage.setItem("conteudo", htmlContent);
+  const htmlContent = document.querySelector('#lista-tarefas').innerHTML;
+  localStorage.setItem('conteudo', htmlContent);
 }
 
 const guardarButton = document.querySelector('#salvar-tarefas');
-guardarButton.addEventListener('click', guardarConteudo)
+guardarButton.addEventListener('click', guardarConteudo);
 
-// function puxarConteudo() {
-//     const teste = localStorage.getItem('conteudo')
-//     document.write(teste)
-// }
-
-// function conteudo() {
-//     if(localStorage.getItem('content') !== null) {
-//         puxarConteudo()
-//     }
-// }
-// window.onload = document.querySelector('html').innerHTML = document.write(localStorage['conteudo']);
-
-
-let saved = localStorage.getItem('conteudo');
-// If there are any saved items, update our list
+const saved = localStorage.getItem('conteudo');
 if (saved) {
-    const htmlContent1 = document.querySelector('body')
-	htmlContent1.innerHTML = saved;
+  const htmlContent1 = document.querySelector('#lista-tarefas');
+  htmlContent1.innerHTML = saved;
 }
-       
+
+// Retirei a parte de resgatar o storage daqui:
+// https://gomakethings.com/saving-html-to-localstorage-with-vanilla-js/
