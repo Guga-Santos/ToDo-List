@@ -8,10 +8,14 @@ function criarTarefa() {
 
   document.querySelector('#texto-tarefa').value = '';
 }
+/* Cria uma lista e adiciona a classe 'item' na li criada.
+ adiciona o texto/valor do input à li criada */
 
 const button = document.querySelector('#criar-tarefa');
 
 button.addEventListener('click', criarTarefa);
+
+// Quando clicar no botão de criar, roda a função criarTarefa
 
 function mudaBg(event) {
   const alvo = document.querySelector('.alvo');
@@ -19,12 +23,22 @@ function mudaBg(event) {
   event.target.classList.add('alvo');
 }
 
+// GAMBIARRA ALERT - Busca por algum elemento com a classe 'alvo', remove a classe 'alvo' do elemento e adiciona o event.target
+
 function lineThr(event) {
-  event.target.classList.add('completed');
+  if (event.target.classList.contains('completed')) {
+    event.target.classList = 'item alvo';
+  } else {
+    event.target.classList.add('completed');
+  }
 }
+// Adiciona a classe 'completed' ao event.target
+// Suei pra me dar conta do if/else '-'
 
 divOl.addEventListener('click', mudaBg);
 divOl.addEventListener('dblclick', lineThr);
+
+// Delimita onde serão aplicadas as funções.
 
 const apagaButton = document.querySelector('#apaga-tudo');
 
