@@ -68,25 +68,49 @@ const praBaixo = document.querySelector('#mover-baixo');
 function goUP() {
   const selection = document.querySelector('.alvo');
   const localTroca = document.querySelector('.alvo').previousElementSibling;
-  const reserva = selection.innerHTML;
-  selection.innerHTML = localTroca.innerHTML;
-  localTroca.innerHTML = reserva;
-  selection.classList.remove('alvo');
-  localTroca.classList.add('alvo');
+  const compara = document.getElementsByClassName('item')[0];
+  if (selection !== compara) {
+    const reserva = selection.innerHTML;
+    selection.innerHTML = localTroca.innerHTML;
+    localTroca.innerHTML = reserva;
+    selection.classList.remove('alvo');
+    localTroca.classList.add('alvo');
+  }
 }
 
 function goDown() {
   const selection = document.querySelector('.alvo');
   const localTroca = document.querySelector('.alvo').nextElementSibling;
-  const reserva = selection.innerHTML;
-  selection.innerHTML = localTroca.innerHTML;
-  localTroca.innerHTML = reserva;
-  selection.classList.remove('alvo');
-  localTroca.classList.add('alvo');
+  const comprimento = document.getElementsByClassName('item').length;
+  const compara = document.getElementsByClassName('item')[comprimento - 1];
+  if (selection !== compara) {
+    const reserva = selection.innerHTML;
+    selection.innerHTML = localTroca.innerHTML;
+    localTroca.innerHTML = reserva;
+    selection.classList.remove('alvo');
+    localTroca.classList.add('alvo');
+  }
 }
 
-praCima.addEventListener('click', goUP);
-praBaixo.addEventListener('click', goDown);
+// praCima.addEventListener('click', goUP);
+// praBaixo.addEventListener('click', goDown);
+
+praCima.addEventListener('click', () => {
+  const tamanhoSelected = document.getElementsByClassName('alvo').length;
+  const alvo = document.getElementsByClassName('alvo')[0];
+  if (tamanhoSelected !== 0 && alvo !== divOl) {
+    goUP();
+  }
+});
+praBaixo.addEventListener('click', () => {
+  const tamanhoSelected = document.getElementsByClassName('alvo').length;
+  const alvo = document.getElementsByClassName('alvo')[0];
+  if (tamanhoSelected !== 0 && alvo !== divOl) {
+    goDown();
+  }
+});
+//  Criada duas funções que permitem mover o item selecionado com a classe 'alvo' para cima e para baixo.
+//  Foi criada uma constante reserva para que fique 'arquivado' o conteudo que será passado de um elemento para o outro.
 
 const selectRemove = document.querySelector('#remover-selecionado');
 
@@ -104,8 +128,13 @@ selectRemove.addEventListener('click', () => {
   document.querySelector('ol').classList.add('alvo');
 });
 
+// Criado um evento que, quando clicado roda uma função que:
+// Itera sobre os elementos filhos dentro do elemento 'ol' e, caso tenham mais de uma classe (pois sempre terão a classe 'item'), eles recebam uma nova classe 'only'.
+// Após a adição da classe, crio um while pra que seja removido todos os elementos que contenham a classe 'only'
+// Após todo o bloco acima, adiciono a classe 'alvo' à 'ol', numa tremenda gambiarra!
+
 function guardarConteudo() {
-  const htmlContent = document.querySelector('#lista-tarefas').innerHTML;
+  const htmlContent = divOl.innerHTML;
   localStorage.setItem('conteudo', htmlContent);
 }
 
@@ -114,7 +143,7 @@ guardarButton.addEventListener('click', guardarConteudo);
 
 const saved = localStorage.getItem('conteudo');
 if (saved) {
-  const htmlContent1 = document.querySelector('#lista-tarefas');
+  const htmlContent1 = divOl;
   htmlContent1.innerHTML = saved;
 }
 
