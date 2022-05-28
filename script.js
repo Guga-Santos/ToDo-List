@@ -23,6 +23,11 @@ function mudaBg(event) {
   event.target.classList.add('alvo');
 }
 
+// const listaTarefas = document.querySelector('#lista-tarefas');
+// listaTarefas.addEventListener('click', (e) => {
+//   e.target.classList.add('alvo')
+// })
+
 // GAMBIARRA ALERT - Busca por algum elemento com a classe 'alvo', remove a classe 'alvo' do elemento e adiciona o event.target
 
 function lineThr(event) {
@@ -115,6 +120,7 @@ praBaixo.addEventListener('click', () => {
 const selectRemove = document.querySelector('#remover-selecionado');
 
 selectRemove.addEventListener('click', () => {
+  // document.querySelector('ol').innerHTML = ''
   const local = document.querySelector('ol').children;
   for (let i = 0; i < local.length; i += 1) {
     if (local[i].classList.length > 1) {
